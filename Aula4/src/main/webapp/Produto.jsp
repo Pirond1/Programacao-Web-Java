@@ -7,11 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Produtos</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-
+<body class="container mt-5">
 	<h1>Produtos Cadastrados:</h1>
-	<table border=1>
+	<a href="CadastrarProduto.jsp" class="btn btn-success mb-3">Novo Produto</a>
+	<table class="table table-bordered">
 	<tr>
 		<th>ID</th>
 		<th>Nome</th>
@@ -29,6 +30,5 @@
 	</tr>
 	<% }} %>
 	</table>
-
 </body>
 </html>
