@@ -1,8 +1,8 @@
 package com.gustavo.api.controller;
 
 import com.gustavo.api.model.Aluno;
+import com.gustavo.api.model.Curso;
 import java.util.List;
-
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,17 +11,19 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.gustavo.api.service.AlunoService;
+import com.gustavo.api.service.MatriculaService;
 
 @RestController
 @RequestMapping("/aluno")
 public class AlunoController {
 	
 	private final AlunoService service;
+	private final MatriculaService matriculaService;
 
-	public AlunoController(AlunoService service) {
+	public AlunoController(AlunoService service, MatriculaService matriculaService) {
 		this.service = service;
+		this.matriculaService = matriculaService;
 	}
 	
 	@GetMapping
@@ -47,5 +49,10 @@ public class AlunoController {
 	@DeleteMapping("/{id}")
 	public void deletar(@PathVariable long id) {
 		service.deletar(id);
+	}
+	
+	@GetMapping("/{id}/curso")
+	public List<Curso> listar_cursos(@PathVariable Long id){
+		return matriculaService.listar_cursos(id);
 	}
 }
