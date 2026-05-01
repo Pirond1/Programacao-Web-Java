@@ -2,7 +2,10 @@ package com.gustavo.api.service;
 
 import java.util.List;
 import org.springframework.stereotype.Service;
-import com.gustavo.api.model.Aluno;
+
+import com.gustavo.api.model.dto.AlunoDTO;
+import com.gustavo.api.model.dto.CursoDTO;
+import com.gustavo.api.model.entity.Aluno;
 import com.gustavo.api.repository.AlunoRepository;
 
 @Service
@@ -36,5 +39,15 @@ public class AlunoService {
 	
 	public void deletar(long id) {
 		repository.deleteById(id);
+	}
+	
+	public AlunoDTO converterDTO(Aluno aluno) {
+		List<CursoDTO> cursoDTO = aluno.getCursos().stream()
+				.map(
+					curso -> new CursoDTO(curso.getId(), curso.getTitulo())
+					)
+				.toList();
+		
+		return new AlunoDTO(aluno.getId(), aluno.getNome(), aluno.getEmail(), cursoDTO);
 	}
 }

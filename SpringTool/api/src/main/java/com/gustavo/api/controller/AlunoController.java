@@ -1,7 +1,5 @@
 package com.gustavo.api.controller;
 
-import com.gustavo.api.model.Aluno;
-import com.gustavo.api.model.Curso;
 import java.util.List;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +9,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.gustavo.api.model.dto.AlunoDTO;
+import com.gustavo.api.model.entity.Aluno;
+import com.gustavo.api.model.entity.Curso;
 import com.gustavo.api.service.AlunoService;
 import com.gustavo.api.service.MatriculaService;
 
@@ -32,8 +34,9 @@ public class AlunoController {
 	}
 	
 	@GetMapping("/{id}")
-	public Aluno buscarPorId(@PathVariable long id) {
-		return service.buscarPorId(id);
+	public AlunoDTO buscarPorId(@PathVariable long id) {
+		Aluno aluno = service.buscarPorId(id);
+		return service.converterDTO(aluno);
 	}
 	
 	@PostMapping

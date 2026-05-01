@@ -1,4 +1,4 @@
-package com.gustavo.api.model;
+package com.gustavo.api.model.entity;
 
 import java.util.ArrayList;
 import java.util.List;

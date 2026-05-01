@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.gustavo.api.model.Aluno;
-import com.gustavo.api.model.Curso;
+import com.gustavo.api.model.entity.Aluno;
+import com.gustavo.api.model.entity.Curso;
 import com.gustavo.api.repository.AlunoRepository;
 import com.gustavo.api.repository.CursoRepository;
 

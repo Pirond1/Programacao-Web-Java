@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.gustavo.api.model.Aluno;
-import com.gustavo.api.model.Curso;
+
+import com.gustavo.api.model.dto.CursoDTO;
+import com.gustavo.api.model.dto.CursoProfessorDTO;
+import com.gustavo.api.model.entity.Aluno;
+import com.gustavo.api.model.entity.Curso;
 import com.gustavo.api.service.CursoService;
 import com.gustavo.api.service.MatriculaService;
 
@@ -27,6 +30,12 @@ public class CursoController {
 	@GetMapping
 	public List<Curso> listar(){
 		return service.listarTodos();
+	}
+	
+	@GetMapping("/{id}")
+	public CursoProfessorDTO listarPorId(@PathVariable Long id) {
+		Curso curso = service.listarPorId(id);
+		return service.converterDTO(curso);
 	}
 	
 	@PostMapping("/{professor_id}")

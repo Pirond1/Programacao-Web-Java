@@ -1,4 +1,4 @@
-package com.gustavo.api.model;
+package com.gustavo.api.model.entity;
 
 import java.util.List;
 
@@ -48,6 +48,12 @@ public class Professor {
 	}
 	public void setEspecialidade(String especialidade) {
 		this.especialidade = especialidade;
+	}
+	public List<Curso> getCursos(){
+		return cursos;
+	}
+	public void setCursos(List<Curso> cursos) {
+		this.cursos = cursos;
 	}
 	
 }
