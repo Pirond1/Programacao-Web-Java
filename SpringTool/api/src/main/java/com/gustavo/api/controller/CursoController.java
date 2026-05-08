@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gustavo.api.model.dto.CursoDTO;
 import com.gustavo.api.model.dto.CursoProfessorDTO;
 import com.gustavo.api.model.entity.Aluno;
 import com.gustavo.api.model.entity.Curso;
 import com.gustavo.api.service.CursoService;
 import com.gustavo.api.service.MatriculaService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/curso")
@@ -39,7 +40,7 @@ public class CursoController {
 	}
 	
 	@PostMapping("/{professor_id}")
-	public Curso salvar(@RequestBody Curso curso, @PathVariable Long professor_id) {
+	public Curso salvar(@RequestBody @Valid Curso curso, @PathVariable Long professor_id) {
 		return service.salvar(curso, professor_id);
 	}
 	

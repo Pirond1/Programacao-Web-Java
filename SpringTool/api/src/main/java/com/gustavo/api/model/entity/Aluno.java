@@ -9,6 +9,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Aluno {
@@ -16,7 +19,11 @@ public class Aluno {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	@NotBlank(message = "Nome é obrigatório")
+	@Size(message = "Nome deve ter entre 3 a 50 caracteres", min = 3, max = 50)
 	private String nome;
+	@NotBlank(message = "Email é obrigatório")
+	@Email(message = "Email com formato inválido")
 	private String email;
 	
 	@ManyToMany

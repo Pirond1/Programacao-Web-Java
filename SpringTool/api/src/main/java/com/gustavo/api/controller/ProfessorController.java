@@ -13,6 +13,8 @@ import com.gustavo.api.model.dto.ProfessorCursoDTO;
 import com.gustavo.api.model.entity.Professor;
 import com.gustavo.api.service.ProfessorService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/professor")
 public class ProfessorController {
@@ -35,7 +37,7 @@ public class ProfessorController {
 	}
 	
 	@PostMapping
-	public Professor salvar(@RequestBody Professor professor) {
+	public Professor salvar(@RequestBody @Valid Professor professor) {
 		return service.salvar(professor);
 	}
 }

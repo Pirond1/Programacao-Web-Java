@@ -12,6 +12,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Curso {
@@ -20,7 +25,13 @@ public class Curso {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotBlank(message = "Titulo é obrigatório")
+	@Size(message = "Titulo deve ter entre 3 a 20 caracteres", min = 3, max = 20)
 	private String titulo;
+	
+	@NotNull(message = "Carga horária é obrigatória")
+	@Min(message = "Carga horária minima de 10 Horas", value = 10)
+	@Max(message = "Carga horária maxima de 99 Horas", value = 99)
 	private int cargaHoraria;
 
 	@ManyToOne

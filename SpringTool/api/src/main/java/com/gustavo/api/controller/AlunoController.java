@@ -16,6 +16,8 @@ import com.gustavo.api.model.entity.Curso;
 import com.gustavo.api.service.AlunoService;
 import com.gustavo.api.service.MatriculaService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/aluno")
 public class AlunoController {
@@ -40,7 +42,7 @@ public class AlunoController {
 	}
 	
 	@PostMapping
-	public Aluno salvar(@RequestBody Aluno aluno) {
+	public Aluno salvar(@RequestBody @Valid Aluno aluno) {
 		return service.salvar(aluno);
 	}
 	
