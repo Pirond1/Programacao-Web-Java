@@ -2,9 +2,11 @@ package com.gustavo.receitas.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,6 +41,16 @@ public class ChefController {
 	@PostMapping
 	public Chef salvar(@RequestBody @Valid Chef chef) {
 		return service.salvar(chef);
+	}
+	
+	@PutMapping("/{id}")
+	public Chef atualizar(@PathVariable Long id, @RequestBody Chef chef) {
+	    return service.atualizar(id, chef);
+	}
+
+	@DeleteMapping("/{id}")
+	public void deletar(@PathVariable Long id) {
+	    service.deletar(id);
 	}
 
 }

@@ -40,5 +40,16 @@ public class ChefService {
 
 		return new ChefReceitaDTO(chef.getId(), chef.getNome(), chef.getEspecialidade(), receitaDTO);
 	}
+	
+	public Chef atualizar(Long id, Chef chefAtt) {
+	    Chef chef = listarPorId(id);
+	    chef.setNome(chefAtt.getNome());
+	    chef.setEspecialidade(chefAtt.getEspecialidade());
+	    return repository.save(chef);
+	}
+
+	public void deletar(Long id) {
+	    repository.deleteById(id);
+	}
 
 }
