@@ -28,8 +28,10 @@ public class ChefController {
 	}
 
 	@GetMapping
-	public List<Chef> listar() {
-		return service.listarTodos();
+	public List<ChefReceitaDTO> listar() {
+		return service.listarTodos().stream()
+				.map(chef -> service.converterDTO(chef))
+				.toList();
 	}
 
 	@GetMapping("/{id}")
@@ -44,8 +46,9 @@ public class ChefController {
 	}
 	
 	@PutMapping("/{id}")
-	public Chef atualizar(@PathVariable Long id, @RequestBody Chef chef) {
-	    return service.atualizar(id, chef);
+	public ChefReceitaDTO atualizar(@PathVariable Long id, @RequestBody Chef chef) {
+		Chef atualiza = service.atualizar(id, chef);
+		return service.converterDTO(atualiza);
 	}
 
 	@DeleteMapping("/{id}")
